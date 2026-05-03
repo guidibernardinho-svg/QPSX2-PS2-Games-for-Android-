@@ -1,13 +1,16 @@
 #include <jni.h>
 
+extern void initRenderer();
+extern void renderFrame();
+
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_qpsx2_MainActivity_runPS2(JNIEnv *env, jobject thiz, jstring path) {
-    const char *iso = env->GetStringUTFChars(path, 0);
+Java_com_qpsx2_MainActivity_initGPU(JNIEnv*, jobject) {
+    initRenderer();
+}
 
-    // Aqui entraria o emulador real (PCSX2 core futuramente)
-    // por enquanto só placeholder
-    // start_emulation(iso);
-
-    env->ReleaseStringUTFChars(path, iso);
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_qpsx2_MainActivity_renderGPU(JNIEnv*, jobject) {
+    renderFrame();
 }
