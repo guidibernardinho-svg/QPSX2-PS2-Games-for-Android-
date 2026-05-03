@@ -6,16 +6,19 @@ import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
-    external fun runPS2(isoPath: String)
+    external fun initGPU()
+    external fun renderGPU()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        initGPU()
+
         val btn = Button(this)
-        btn.text = "Start PS2"
+        btn.text = "Render Frame"
 
         btn.setOnClickListener {
-            runPS2("/sdcard/PS2/game.iso")
+            renderGPU()
         }
 
         setContentView(btn)
